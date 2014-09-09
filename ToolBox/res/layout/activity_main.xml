@@ -1,0 +1,26 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="${relativePackage}.${activityClass}" >
+
+    <Button
+        android:id="@+id/btn_str_req"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="StringQuest" />
+
+    <Button
+        android:id="@+id/btn_show_img"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/btn_str_req"
+        android:text="ShowImg" />
+
+    <com.android.volley.toolbox.NetworkImageView
+        android:id="@+id/img_view"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_below="@+id/btn_str_req" />
+
+</RelativeLayout>
