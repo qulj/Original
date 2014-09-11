@@ -12,9 +12,9 @@ import android.util.AttributeSet;
 import android.widget.ImageView;
 
 /**
- * 圆形图片
- * @author Administrator
- *
+ *  圆形图片
+ * @author qlj
+ * @time 2014年9月11日下午4:59:29
  */
 public abstract class MaskedImage extends ImageView {
 	private static final Xfermode MASK_XFERMODE;

@@ -8,6 +8,11 @@ import com.qlj.toolbox.util.NetworkUtil;
 
 import android.text.TextUtils;
 
+/**
+ * 接口 父类
+ * @author qlj
+ * @time 2014年9月11日下午3:21:48
+ */
 public class BaseApi {
 
 	// 返回成功指令
@@ -87,12 +92,10 @@ public class BaseApi {
 		try {
 			response = NetworkUtil.post(CommonUtil.getApiUrl() + cmd, keys, values);
 			Logger.i(response);
-			// jsonObject = new JSONObject(response);
 		} catch (ConnectTimeoutException e) {
 			response = "{\"status\":0,\"msg\":\"连接超时\"}";
 			e.printStackTrace();
 		} catch (Exception e) {
-			// response = "{\"status\":0,\"msg\":\"程序异常\"}";
 			e.printStackTrace();
 		}
 		if (!TextUtils.isEmpty(response)) {
@@ -101,32 +104,4 @@ public class BaseApi {
 		return jsonObject;
 	}
 
-	public static String postRetStr(String cmd, String[] keys, String[] values) throws Exception {
-		String response = "";
-
-		if (!NetworkUtil.checkNetWork()) {
-			response = "{\"status\":0,\"msg\":\"请检查网络连接\"}";
-		}
-
-		String param = "";
-		for (int i = 0; i < values.length; i++) {
-			param += keys[i] + "=" + values[i];
-			if (i != values.length - 1)
-				param += "&";
-		}
-		Logger.i("post params", CommonUtil.getApiUrl() + cmd + "?" + param);
-
-		try {
-			response = NetworkUtil.post(CommonUtil.getApiUrl() + cmd, keys, values);
-			Logger.i(response);
-			// jsonObject = new JSONObject(response);
-		} catch (ConnectTimeoutException e) {
-			response = "{\"status\":0,\"msg\":\"连接超时\"}";
-			e.printStackTrace();
-		} catch (Exception e) {
-			// response = "{\"status\":0,\"msg\":\"程序异常\"}";
-			e.printStackTrace();
-		}
-		return response;
-	}
 }

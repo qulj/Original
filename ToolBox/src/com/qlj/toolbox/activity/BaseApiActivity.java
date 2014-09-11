@@ -23,6 +23,9 @@ import com.qlj.toolbox.util.MJSONObject;
 /**
  * 最基本的网络请求，httpconnection
  * 
+ * 优点：最基本的请求，方便封装
+ * 缺点：没有做 网络请求，线程管理，缓存处理。
+ * 
  * @author qlj
  * @time 2014年9月10日下午4:39:06
  */

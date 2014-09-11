@@ -8,10 +8,10 @@ import android.graphics.RectF;
 import android.util.AttributeSet;
 
 /**
- * 圆形图片-----》 MaskedImage
+ * 圆形图片-----》 {@link MaskedImage}
  * 
- * @author Administrator
- * 
+ * @author qlj
+ * @time 2014年9月11日下午4:59:54
  */
 public class CircularImage extends MaskedImage {
 	public CircularImage(Context paramContext) {
@@ -26,6 +26,9 @@ public class CircularImage extends MaskedImage {
 		super(paramContext, paramAttributeSet, paramInt);
 	}
 
+	/**
+	 * 一般 ARGB_8888 适合用于 比较小使用量的场景。如果有很多张圆形图片，会崩溃。 适用于使用频率不高，是可以的。切记，此类不能使用太频繁。
+	 */
 	public Bitmap createMask() {
 		int i = getWidth();
 		int j = getHeight();

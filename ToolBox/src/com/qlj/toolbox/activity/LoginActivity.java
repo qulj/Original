@@ -32,6 +32,12 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 
+/**
+ * 登陆
+ * 
+ * @author qlj
+ * @time 2014年9月11日下午5:18:40
+ */
 public class LoginActivity extends Activity implements OnClickListener {
 
 	private static final String TAG = "LoginActivity";

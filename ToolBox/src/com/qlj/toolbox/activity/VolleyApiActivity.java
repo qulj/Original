@@ -1,7 +1,11 @@
 package com.qlj.toolbox.activity;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import com.android.volley.NoConnectionError;
 import com.android.volley.Response;
+import com.android.volley.Response.Listener;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.qlj.toolbox.R;
@@ -10,6 +14,7 @@ import com.qlj.toolbox.util.CommonUtil;
 import com.qlj.toolbox.util.Logger;
 import com.qlj.toolbox.util.MD5;
 import com.qlj.toolbox.util.NetworkUtil;
+import com.qlj.toolbox.volley.MofingStringRequest;
 
 import android.app.Activity;
 import android.content.Context;
@@ -23,7 +28,8 @@ import android.widget.Button;
 /**
  * 基于网络通信框架volley进行的请求
  * 
- * 优点：网络请求放在消息队列中统一管理 缺点：要组转URL，不怎么方便，希望封装URL工具方法
+ * 优点：网络请求放在消息队列中统一管理 (推荐使用)
+ * 
  * 
  * @author qlj
  * @time 2014年9月10日下午5:31:24
@@ -57,8 +63,14 @@ public class VolleyApiActivity extends Activity {
 
 	private void login() {
 		final Message msg = new Message();
-		// 声明 请求对象
-		StringRequest stringRequest = new StringRequest(NetworkUtil.jointURL("/customer/customerRegist.do", new String[] { "telphone", "pass", "flag", "regSource" }, new String[] { "15889722562", MD5.MD5Encode("000000"), "1", "1" }), new Response.Listener<String>() {
+		/** 封装URL参数 */
+		HashMap<String, String> hashMap = new HashMap<String, String>();
+		hashMap.put("telphone", "15889722562");
+		hashMap.put("pass", MD5.MD5Encode("000000"));
+		hashMap.put("flag", "1");
+		hashMap.put("regSource", "1");
+
+		MofingStringRequest mofingStringRequest = new MofingStringRequest(this, CommonUtil.getApiUrl() + "/customer/customerRegist.do?", hashMap, new Response.Listener<String>() {
 
 			@Override
 			public void onResponse(String response) {
@@ -71,17 +83,14 @@ public class VolleyApiActivity extends Activity {
 
 			@Override
 			public void onErrorResponse(VolleyError error) {
-				boolean b = error.getClass().equals(NoConnectionError.class);
 				Logger.e("TAg", error.getMessage());
 				msg.what = 0;
 				msg.obj = NetworkUtil.errorInfo(error);
 				handler.sendMessage(msg);
 			}
 		});
-		// 设置该request的tag，方便在退出该activity时取消正在请求的request，节省网络请求资源
-		stringRequest.setTag(this);
-		// 把请求加入到请求队列中，以便对请求进行资源配置
-		ToolBoxApplication.getRequestQueue().add(stringRequest);
+
+		ToolBoxApplication.getRequestQueue().add(mofingStringRequest);
 	}
 
 	@Override

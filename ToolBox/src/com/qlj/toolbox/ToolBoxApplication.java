@@ -24,18 +24,12 @@ public class ToolBoxApplication extends Application {
 
 	private static ToolBoxApplication instance;
 	private static Context appContext;
-	/*
-	 * activity组件集合
-	 */
+	/** activity组件集合 */
 	private List<Activity> activityList = new LinkedList<Activity>();
-	/*
-	 * 线程池对象
-	 */
+	/** 线程池对象 */
 	private static ExecutorService cachedThreadPool;
 
-	/**
-	 * volley请求队列
-	 */
+	/** volley请求队列 */
 	private static RequestQueue requestQueue;
 
 	@Override

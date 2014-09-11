@@ -11,9 +11,8 @@ import com.qlj.toolbox.util.NetworkUtil;
 
 /**
  * 接口类
- * 
- * @author zxq
- * @date 2013-9-14
+ * @author qlj
+ * @time 2014年9月11日下午3:19:20
  */
 public class ImplApi extends BaseApi {
 

@@ -41,9 +41,15 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
+/**
+ * 网络连接工具类
+ * 
+ * @author qlj
+ * @time 2014年9月11日下午3:25:02
+ */
 public class NetworkUtil {
 
-	// private final static String TAG = "NetworkUtils";
+	private final static String TAG = "NetworkUtils";
 
 	static Context mContext;
 
@@ -174,15 +180,11 @@ public class NetworkUtil {
 		HttpConnectionParams.setConnectionTimeout(httpParams, 30000);
 		HttpConnectionParams.setSoTimeout(httpParams, 30000);
 		HttpClient client = new DefaultHttpClient(httpParams);
-		// client.getParams().setParameter(CoreConnectionPNames.CONNECTION_TIMEOUT,
-		// 4500);
 		HttpResponse response = client.execute(request);
 		if (response.getStatusLine().getStatusCode() == 200) {
 			strResult = EntityUtils.toString(response.getEntity());
-			// Logger.i("Net post response entity # " + strResult);
 		} else {
 			strResult = String.valueOf(response.getStatusLine().getStatusCode());
-			// Logger.i("Net post response error # " + strResult);
 		}
 		return strResult;
 
@@ -213,12 +215,9 @@ public class NetworkUtil {
 		HttpConnectionParams.setConnectionTimeout(httpParams, 45000);
 		HttpConnectionParams.setSoTimeout(httpParams, 30000);
 		HttpClient client = new DefaultHttpClient(httpParams);
-		// client.getParams().setParameter(CoreConnectionPNames.CONNECTION_TIMEOUT,
-		// 4500);
 		HttpResponse response = client.execute(request);
 		if (response.getStatusLine().getStatusCode() == 200) {
 			strResult = EntityUtils.toString(response.getEntity());
-			/* Tools.printLogWithTag(TAG, strResult); */
 		}
 		return strResult;
 
@@ -292,8 +291,6 @@ public class NetworkUtil {
 					return -1;
 				}
 
-				// File resultFile = fileUtils.write2SDFromInput(path, fileName,
-				// inputStream);
 				File resultFile = fileUtils.writeFromInput(path, fileName, inputStream);
 				if (resultFile == null) {
 					return -1;
