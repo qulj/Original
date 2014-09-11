@@ -24,14 +24,14 @@ public class DateUtil {
 	public static Calendar calendar = Calendar.getInstance();
 
 	/**
-	 * 
+	 * 获取年月日
 	 * @return yyyy-mm-dd 2012-12-25
 	 */
 	public static String getDate() {
 		return getYear() + "-" + getMonth() + "-" + getDay();
 	}
 
-	/**
+	/**获取格式化的时间
 	 * @param format
 	 * @return yyyy年MM月dd HH:mm MM-dd HH:mm 2012-12-25
 	 * 
@@ -202,6 +202,11 @@ public class DateUtil {
 		System.out.println((calendar.get(Calendar.MONTH) + 1) + "月" + calendar.get(Calendar.DAY_OF_MONTH) + "日");
 	}
 
+	/**
+	 * 把日期字符串转换为昨天、前天、星期几
+	 * @param dateStr
+	 * @return
+	 */
 	@SuppressLint("SimpleDateFormat")
 	public static String fromToday(String dateStr) {
 		String value = "";

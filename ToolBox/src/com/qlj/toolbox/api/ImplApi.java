@@ -31,6 +31,10 @@ public class ImplApi extends BaseApi {
 		return post("/user/enterpriseLogin.do", new String[] { "loginName", "loginPassword", "app_flag" }, new String[] { loginName, loginPassword, "1" });
 	}
 
+	public static JSONObject enterpriseLogin(String telphone, String pass, String flag) throws Exception {
+		return post("/customer/customerRegist.do", new String[] { "telphone", "pass", "flag", "regSource" }, new String[] { telphone, pass, "1", "1" });
+	}
+
 	/**
 	 * 重置密码
 	 * 
@@ -54,12 +58,12 @@ public class ImplApi extends BaseApi {
 	 * @throws Exception
 	 */
 	public static JSONObject modifyLoginPassword(String userID, String oldLoginPassword, String newLoginPassword, String confirmPassword) throws Exception {
-		return post("/user/modifyLoginPassword.do", new String[] { "userID", "oldLoginPassword", "newLoginPassword", "confirmPassword" }, new String[] { userID, oldLoginPassword, newLoginPassword,
-				confirmPassword });
+		return post("/user/modifyLoginPassword.do", new String[] { "userID", "oldLoginPassword", "newLoginPassword", "confirmPassword" }, new String[] { userID, oldLoginPassword, newLoginPassword, confirmPassword });
 	}
-	
+
 	/**
 	 * 基本账户余额收银
+	 * 
 	 * @param userID
 	 * @param pass
 	 * @param consumeMoney
@@ -67,22 +71,24 @@ public class ImplApi extends BaseApi {
 	 * @throws Exception
 	 */
 	public static JSONObject baseAccountPay(String userID, String pass, String consumeMoney) throws Exception {
-		return post("/user/baseAccountPay.do", new String[] { "userID", "pass", "consumeMoney" }, new String[] { userID, pass ,consumeMoney});
+		return post("/user/baseAccountPay.do", new String[] { "userID", "pass", "consumeMoney" }, new String[] { userID, pass, consumeMoney });
 	}
-	
+
 	/**
 	 * 根据验证码获取该用户的手机号
+	 * 
 	 * @param userID
 	 * @param pass
 	 * @return
 	 * @throws Exception
 	 */
 	public static JSONObject checkWeiCardPass(String userID, String pass) throws Exception {
-		return post("/user/checkWeiCardPass.do", new String[] { "userID", "pass" }, new String[] { userID, pass});
+		return post("/user/checkWeiCardPass.do", new String[] { "userID", "pass" }, new String[] { userID, pass });
 	}
 
 	/**
 	 * 基本账户余额收银明细
+	 * 
 	 * @param userID
 	 * @param telphone
 	 * @param consumeStartDate
@@ -92,12 +98,10 @@ public class ImplApi extends BaseApi {
 	 * @return
 	 * @throws Exception
 	 */
-	public static JSONObject weiCardCashDatail(String userID, String telphone, String consumeStartDate, String consumeEndDate, String pageSize, String currentPage)
-			throws Exception {
-		return post("/user/weiCardCashDatail.do", new String[] { "userID", "telphone", "consumeStartDate", "consumeEndDate", "pageSize", "currentPage" }, new String[] { userID,
-				telphone, consumeStartDate, consumeEndDate, pageSize, currentPage });
+	public static JSONObject weiCardCashDatail(String userID, String telphone, String consumeStartDate, String consumeEndDate, String pageSize, String currentPage) throws Exception {
+		return post("/user/weiCardCashDatail.do", new String[] { "userID", "telphone", "consumeStartDate", "consumeEndDate", "pageSize", "currentPage" }, new String[] { userID, telphone, consumeStartDate, consumeEndDate, pageSize, currentPage });
 	}
-	
+
 	/**
 	 * 收银时验证 优惠券、团购、微会员
 	 * 
@@ -150,10 +154,8 @@ public class ImplApi extends BaseApi {
 	 * @return
 	 * @throws Exception
 	 */
-	public static JSONObject cassDatail(String userID, String passOrTelphone, String useStartDate, String useEndDate, String newsType, String dayOrWeek, String pageSize, String currentPage)
-			throws Exception {
-		return post("/user/cassDatail.do", new String[] { "userID", "passOrTelphone", "useStartDate", "useEndDate", "newsType", "dayOrWeek", "pageSize", "currentPage" }, new String[] { userID,
-				passOrTelphone, useStartDate, useEndDate, newsType, dayOrWeek, pageSize, currentPage });
+	public static JSONObject cassDatail(String userID, String passOrTelphone, String useStartDate, String useEndDate, String newsType, String dayOrWeek, String pageSize, String currentPage) throws Exception {
+		return post("/user/cassDatail.do", new String[] { "userID", "passOrTelphone", "useStartDate", "useEndDate", "newsType", "dayOrWeek", "pageSize", "currentPage" }, new String[] { userID, passOrTelphone, useStartDate, useEndDate, newsType, dayOrWeek, pageSize, currentPage });
 	}
 
 	/**
@@ -169,8 +171,7 @@ public class ImplApi extends BaseApi {
 	 * @throws Exception
 	 */
 	public static JSONObject queryStoreList(String userID, String storeName, String productOrderId, String pageSize, String currentPage) throws Exception {
-		return post("/user/queryStoreList.do", new String[] { "userID", "storeName", "productOrderId", "pageSize", "currentPage" }, new String[] { userID, storeName, productOrderId, pageSize,
-				currentPage });
+		return post("/user/queryStoreList.do", new String[] { "userID", "storeName", "productOrderId", "pageSize", "currentPage" }, new String[] { userID, storeName, productOrderId, pageSize, currentPage });
 	}
 
 	/**
@@ -193,10 +194,8 @@ public class ImplApi extends BaseApi {
 	 * @return
 	 * @throws Exception
 	 */
-	public static JSONObject enterpriseOrderList(String userID, String dayOrWeek, String orderNumber, String productOrderStatus, String startDate, String endDate, String pageSize, String currentPage,
-			String colorNum) throws Exception {
-		return post("/user/enterpriseOrderList.do", new String[] { "userID", "dayOrWeek", "orderNumber", "productOrderStatus", "startDate", "endDate", "pageSize", "currentPage", "colorNum" },
-				new String[] { userID, dayOrWeek, orderNumber, productOrderStatus, startDate, endDate, pageSize, currentPage, colorNum });
+	public static JSONObject enterpriseOrderList(String userID, String dayOrWeek, String orderNumber, String productOrderStatus, String startDate, String endDate, String pageSize, String currentPage, String colorNum) throws Exception {
+		return post("/user/enterpriseOrderList.do", new String[] { "userID", "dayOrWeek", "orderNumber", "productOrderStatus", "startDate", "endDate", "pageSize", "currentPage", "colorNum" }, new String[] { userID, dayOrWeek, orderNumber, productOrderStatus, startDate, endDate, pageSize, currentPage, colorNum });
 	}
 
 	/**
@@ -224,13 +223,18 @@ public class ImplApi extends BaseApi {
 	public static JSONObject cancleOrder(String userID, String productOrderId) throws Exception {
 		return post("/user/cancleOrder.do", new String[] { "userID", "productOrderId" }, new String[] { userID, productOrderId });
 	}
-	
+
 	/**
-	 * 自提  -- 提货
-	 * @param userID 用户id
-	 * @param productOrderId 订单id
-	 * @param pass 提货码
-	 * @param pickUpUser 提货人
+	 * 自提 -- 提货
+	 * 
+	 * @param userID
+	 *            用户id
+	 * @param productOrderId
+	 *            订单id
+	 * @param pass
+	 *            提货码
+	 * @param pickUpUser
+	 *            提货人
 	 * @return
 	 * @throws Exception
 	 */
@@ -397,12 +401,10 @@ public class ImplApi extends BaseApi {
 		try {
 			response = NetworkUtil.post(CommonUtil.getApiUrl() + cmd, keys, values);
 			Logger.i(response);
-			// jsonObject = new JSONObject(response);
 		} catch (ConnectTimeoutException e) {
 			response = "{\"status\":0,\"msg\":\"连接超时\"}";
 			e.printStackTrace();
 		} catch (Exception e) {
-			// response = "{\"status\":0,\"msg\":\"程序异常\"}";
 			e.printStackTrace();
 		}
 		if (!TextUtils.isEmpty(response)) {
@@ -424,7 +426,6 @@ public class ImplApi extends BaseApi {
 		try {
 			response = NetworkUtil.post(CommonUtil.getApiUrl() + cmd, keys, values);
 			Logger.i(response);
-			// jsonObject = new JSONObject(response);
 		} catch (ConnectTimeoutException e) {
 			e.printStackTrace();
 		} catch (Exception e) {

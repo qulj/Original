@@ -1,34 +1,19 @@
 package com.qlj.toolbox.activity;
 
-import java.io.IOException;
-import java.util.Map;
 
-import org.apache.http.HttpResponse;
-
-import com.android.volley.AuthFailureError;
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.HttpClientStack;
 import com.android.volley.toolbox.ImageLoader;
-import com.android.volley.toolbox.ImageLoader.ImageCache;
-import com.android.volley.toolbox.HttpStack;
 import com.android.volley.toolbox.NetworkImageView;
 import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
-import com.google.gson.Gson;
 import com.qlj.toolbox.R;
 import com.qlj.toolbox.ToolBoxApplication;
 import com.qlj.toolbox.util.BitmapCache;
 import com.qlj.toolbox.util.Logger;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.graphics.Bitmap;
-import android.net.http.AndroidHttpClient;
+import android.content.Intent;
 import android.os.Bundle;
-import android.util.LruCache;
 import android.view.View;
 import android.view.View.OnClickListener;
 
@@ -46,6 +31,9 @@ public class MainActivity extends Activity implements OnClickListener {
 		findViewById(R.id.btn_str_req).setOnClickListener(this);
 		findViewById(R.id.btn_show_img).setOnClickListener(this);
 
+		findViewById(R.id.btn_base_api).setOnClickListener(this);
+		findViewById(R.id.btn_callback_api).setOnClickListener(this);
+		findViewById(R.id.btn_volley_api).setOnClickListener(this);
 	}
 
 	void stringRequest() {
@@ -83,6 +71,15 @@ public class MainActivity extends Activity implements OnClickListener {
 			break;
 		case R.id.btn_show_img:
 			showImg();
+			break;
+		case R.id.btn_base_api:
+			startActivity(new Intent(this, BaseApiActivity.class));
+			break;
+		case R.id.btn_callback_api:
+			startActivity(new Intent(this, CallbackApiActivity.class));
+			break;
+		case R.id.btn_volley_api:
+			startActivity(new Intent(this, VolleyApiActivity.class));
 			break;
 		default:
 			break;

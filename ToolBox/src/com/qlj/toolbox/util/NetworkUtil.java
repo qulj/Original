@@ -29,7 +29,12 @@ import org.apache.http.params.HttpConnectionParams;
 import org.apache.http.params.HttpParams;
 import org.apache.http.protocol.HTTP;
 import org.apache.http.util.EntityUtils;
+import org.json.JSONObject;
 
+import com.android.volley.NetworkError;
+import com.android.volley.NoConnectionError;
+import com.android.volley.TimeoutError;
+import com.android.volley.VolleyError;
 import com.qlj.toolbox.ToolBoxApplication;
 
 import android.content.Context;
@@ -55,7 +60,7 @@ public class NetworkUtil {
 	public static boolean checkNetWork() {
 		boolean flag = false;
 		try {
-			ConnectivityManager connectivity = (ConnectivityManager)ToolBoxApplication.getAppContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+			ConnectivityManager connectivity = (ConnectivityManager) ToolBoxApplication.getAppContext().getSystemService(Context.CONNECTIVITY_SERVICE);
 			if (connectivity != null) {
 				NetworkInfo info = connectivity.getActiveNetworkInfo();
 				if (info != null && info.isConnected()) {
@@ -93,7 +98,70 @@ public class NetworkUtil {
 		}
 		return flag;
 	}
-	
+
+	/**
+	 * 监听 异常类型
+	 * 
+	 * @param error
+	 *            volley中请求错误信息
+	 * @return
+	 */
+	public static String errorInfo(VolleyError error) {
+		String str = "";
+		if (error.getClass().equals(NoConnectionError.class)) {
+			str = "连接异常，请检查网络。";
+		} else if (error.getClass().equals(NetworkError.class)) {
+			str = "网络异常，请检查网络。";
+		} else if (error.getClass().equals(TimeoutError.class)) {
+			str = "请求超时，请检查网络。";
+		} else if (error.getClass().equals(NetworkError.class)) {
+			str = "网络异常，请检查网络。";
+		}
+		return str;
+	}
+
+	/**
+	 * volley中拼接url
+	 * 
+	 * @param cmd
+	 *            命令 .do
+	 * @param keys
+	 *            键数组
+	 * @param values
+	 *            值数组
+	 * @return
+	 */
+	public static String jointURL(String cmd, String[] keys, String[] values) {
+		StringBuffer url = new StringBuffer();
+		StringBuffer param = new StringBuffer();
+		for (int i = 0; i < values.length; i++) {
+			param.append(keys[i]);
+			param.append("=");
+			param.append(values[i]);
+			if (i != values.length - 1)
+				param.append("&");
+		}
+		Logger.i("post params", CommonUtil.getApiUrl() + cmd + "?" + param.toString());
+		url.append(CommonUtil.getApiUrl());
+		url.append(cmd);
+		url.append("?");
+		url.append(param);
+
+		return url.toString();
+	}
+
+	/**
+	 * 基于 HttpClient 的请求（android的原始请求方式） 多参数，多值
+	 * 
+	 * @param uri
+	 * @param key
+	 * @param value
+	 * @return
+	 * @throws ClientProtocolException
+	 * @throws ConnectException
+	 * @throws IOException
+	 * @throws Exception
+	 */
 	public static String post(String uri, String[] key, String[] value) throws ClientProtocolException, ConnectException, IOException, Exception {
 		String strResult = null;
 		HttpPost request = new HttpPost(uri);
@@ -120,6 +188,19 @@ public class NetworkUtil {
 
 	}
 
+	/**
+	 * 基于 HttpClient 的请求（android的原始请求方式）
+	 * 
+	 * 单参数 单值
+	 * 
+	 * @param uri
+	 * @param value
+	 * @return
+	 * @throws ConnectTimeoutException
+	 * @throws ClientProtocolException
+	 * @throws IOException
+	 * @throws Exception
+	 */
 	public static String post(String uri, String value) throws ConnectTimeoutException, ClientProtocolException, IOException, Exception {
 		String strResult = null;
 		HttpPost request = new HttpPost(uri);
@@ -189,7 +270,7 @@ public class NetworkUtil {
 		}
 		return null;
 	}
-	
+
 	/**
 	 * 下载网络 资源
 	 * 

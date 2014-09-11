@@ -17,10 +17,36 @@
         android:layout_toRightOf="@+id/btn_str_req"
         android:text="ShowImg" />
 
+    <LinearLayout
+        android:id="@+id/ll_api_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btn_str_req"
+        android:orientation="vertical" >
+
+        <Button
+            android:id="@+id/btn_base_api"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="基础网络请求" />
+
+        <Button
+            android:id="@+id/btn_callback_api"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="callback请求" />
+
+        <Button
+            android:id="@+id/btn_volley_api"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="volley请求" />
+    </LinearLayout>
+
     <com.android.volley.toolbox.NetworkImageView
         android:id="@+id/img_view"
         android:layout_width="200dp"
         android:layout_height="200dp"
-        android:layout_below="@+id/btn_str_req" />
+        android:layout_below="@+id/ll_api_layout" />
 
 </RelativeLayout>

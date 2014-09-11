@@ -70,6 +70,7 @@ public class AsynImageLoader {
 
 	/**
 	 * 用于加载单张图片
+	 * 
 	 * @param pContext
 	 * @param imageUrl
 	 * @param imageView
@@ -107,6 +108,7 @@ public class AsynImageLoader {
 
 	/**
 	 * 在加载图片的时候转换为圆形图片
+	 * 
 	 * @param pContext
 	 * @param imageUrl
 	 * @param imageView
@@ -134,7 +136,7 @@ public class AsynImageLoader {
 			}).start();
 		} else {
 			handler.post(new Runnable() {
-				public void run() {//处理成圆角
+				public void run() {// 处理成圆角
 					imageView.setImageBitmap(BitmapUtil.toRoundBitmap(image.get()));
 				}
 			});
@@ -151,7 +153,7 @@ public class AsynImageLoader {
 					InputStream picStream = url.getInputStream();
 					BitmapFactory.Options options = new BitmapFactory.Options();
 					options.inJustDecodeBounds = false;
-					options.inSampleSize = 10;
+					options.inSampleSize = 10;// 缩小10倍
 					final Bitmap bitmap = BitmapFactory.decodeStream(picStream, null, options);
 					handler.post(new Runnable() {
 						public void run() {

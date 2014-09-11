@@ -35,39 +35,45 @@ import android.util.Log;
 
 /**
  * 图片处理工具类
+ * 
  * @author Administrator
- *
+ * 
  */
 public class BitmapUtil {
-	
+
 	private static final String TAG = "BitmapUtil";
-	
+
 	/**
 	 * 圆角图片
-	 * @param bitmap 图片
-	 * @param pixels 圆角半径
+	 * 
+	 * @param bitmap
+	 *            图片
+	 * @param pixels
+	 *            圆角半径
 	 * @return
 	 */
-	public static Bitmap toRoundCorner(Bitmap bitmap, int pixels) {  
-        Bitmap output = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(), Config.ARGB_8888);  
-        Canvas canvas = new Canvas(output);  
-        final int color = 0xff424242;  
-        final Paint paint = new Paint();  
-        final Rect rect = new Rect(0, 0, bitmap.getWidth(), bitmap.getHeight());  
-        final RectF rectF = new RectF(rect);  
-        final float roundPx = pixels;  
-        paint.setAntiAlias(true);  
-        canvas.drawARGB(0, 0, 0, 0);  
-        paint.setColor(color);  
-        canvas.drawRoundRect(rectF, roundPx, roundPx, paint);  
-        paint.setXfermode(new PorterDuffXfermode(Mode.SRC_IN));  
-        canvas.drawBitmap(bitmap, rect, rect, paint);
-        return output;  
-    }
+	public static Bitmap toRoundCorner(Bitmap bitmap, int pixels) {
+		Bitmap output = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(), Config.ARGB_8888);
+		Canvas canvas = new Canvas(output);
+		final int color = 0xff424242;
+		final Paint paint = new Paint();
+		final Rect rect = new Rect(0, 0, bitmap.getWidth(), bitmap.getHeight());
+		final RectF rectF = new RectF(rect);
+		final float roundPx = pixels;
+		paint.setAntiAlias(true);
+		canvas.drawARGB(0, 0, 0, 0);
+		paint.setColor(color);
+		canvas.drawRoundRect(rectF, roundPx, roundPx, paint);
+		paint.setXfermode(new PorterDuffXfermode(Mode.SRC_IN));
+		canvas.drawBitmap(bitmap, rect, rect, paint);
+		return output;
+	}
 
 	/**
 	 * 转换图片成圆形
-	 * @param bitmap 传入Bitmap对象
+	 * 
+	 * @param bitmap
+	 *            传入Bitmap对象
 	 * @return
 	 */
 	public static Bitmap toRoundBitmap(Bitmap bitmap) {
@@ -105,10 +111,8 @@ public class BitmapUtil {
 
 		final int color = 0xff424242;
 		final Paint paint = new Paint();
-		final Rect src = new Rect((int) left, (int) top, (int) right,
-				(int) bottom);
-		final Rect dst = new Rect((int) dst_left, (int) dst_top,
-				(int) dst_right, (int) dst_bottom);
+		final Rect src = new Rect((int) left, (int) top, (int) right, (int) bottom);
+		final Rect dst = new Rect((int) dst_left, (int) dst_top, (int) dst_right, (int) dst_bottom);
 		final RectF rectF = new RectF(dst);
 
 		paint.setAntiAlias(true);
@@ -146,8 +150,7 @@ public class BitmapUtil {
 	 * @param drawableId
 	 * @return
 	 */
-	public static Bitmap ReadBitmapById(Context context, int drawableId,
-			int screenWidth, int screenHight) {
+	public static Bitmap ReadBitmapById(Context context, int drawableId, int screenWidth, int screenHight) {
 		BitmapFactory.Options options = new BitmapFactory.Options();
 		options.inPreferredConfig = Config.ARGB_8888;
 		options.inInputShareable = true;
@@ -165,8 +168,7 @@ public class BitmapUtil {
 	 *            图片路径
 	 * @return
 	 */
-	public static Bitmap ReadBitmapById(Context context, String pathName,
-			int screenWidth, int screenHight) {
+	public static Bitmap ReadBitmapById(Context context, String pathName, int screenWidth, int screenHight) {
 		BitmapFactory.Options options = new BitmapFactory.Options();
 		options.inPreferredConfig = Config.ARGB_8888;
 		options.inInputShareable = true;
@@ -183,8 +185,7 @@ public class BitmapUtil {
 	 * @param screenHight
 	 * @return
 	 */
-	public static Bitmap getBitmap(Bitmap bitmap, int screenWidth,
-			int screenHight) {
+	public static Bitmap getBitmap(Bitmap bitmap, int screenWidth, int screenHight) {
 		int w = bitmap.getWidth();
 		int h = bitmap.getHeight();
 		// Log.e("jj", "图片宽度" + w + ",screenWidth=" + screenWidth);
@@ -216,8 +217,7 @@ public class BitmapUtil {
 		if (FREE_SD_SPACE_NEEDED_TO_CACHE > freeSpaceOnSd()) {
 			return;
 		}
-		if (!Environment.MEDIA_MOUNTED.equals(Environment
-				.getExternalStorageState()))
+		if (!Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState()))
 			return;
 		String filename = url;
 		// 目录不存在就创建
@@ -296,10 +296,8 @@ public class BitmapUtil {
 
 	/** * 计算sdcard上的剩余空间 * @return */
 	private static int freeSpaceOnSd() {
-		StatFs stat = new StatFs(Environment.getExternalStorageDirectory()
-				.getPath());
-		double sdFreeMB = ((double) stat.getAvailableBlocks() * (double) stat
-				.getBlockSize()) / MB;
+		StatFs stat = new StatFs(Environment.getExternalStorageDirectory().getPath());
+		double sdFreeMB = ((double) stat.getAvailableBlocks() * (double) stat.getBlockSize()) / MB;
 
 		return (int) sdFreeMB;
 	}
@@ -308,42 +306,48 @@ public class BitmapUtil {
 		ByteArrayOutputStream output = new ByteArrayOutputStream();
 		bmp.compress(CompressFormat.PNG, 100, output);
 		if (needRecycle) {
-			bmp.recycle();
+			bmp.recycle();// 回收bitmap的空间
 		}
-		
+
 		byte[] result = output.toByteArray();
 		try {
 			output.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 		return result;
 	}
-	
+
+	/**
+	 * {@link #inputStreamToByte(InputStream)}
+	 * 
+	 * @param url
+	 * @return
+	 */
 	public static byte[] getHtmlByteArray(final String url) {
-		 URL htmlUrl = null;     
-		 InputStream inStream = null;     
-		 try {         
-			 htmlUrl = new URL(url);         
-			 URLConnection connection = htmlUrl.openConnection();         
-			 HttpURLConnection httpConnection = (HttpURLConnection)connection;         
-			 int responseCode = httpConnection.getResponseCode();         
-			 if(responseCode == HttpURLConnection.HTTP_OK){             
-				 inStream = httpConnection.getInputStream();         
-			  }     
-			 } catch (MalformedURLException e) {               
-				 e.printStackTrace();     
-			 } catch (IOException e) {              
-				e.printStackTrace();    
-		  } 
+		URL htmlUrl = null;
+		InputStream inStream = null;
+		try {
+			htmlUrl = new URL(url);
+			URLConnection connection = htmlUrl.openConnection();
+			HttpURLConnection httpConnection = (HttpURLConnection) connection;
+			int responseCode = httpConnection.getResponseCode();
+			if (responseCode == HttpURLConnection.HTTP_OK) {
+				inStream = httpConnection.getInputStream();
+			}
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		byte[] data = inputStreamToByte(inStream);
 
 		return data;
 	}
-	
+
 	public static byte[] inputStreamToByte(InputStream is) {
-		try{
+		try {
 			ByteArrayOutputStream bytestream = new ByteArrayOutputStream();
 			int ch;
 			while ((ch = is.read()) != -1) {
@@ -352,13 +356,13 @@ public class BitmapUtil {
 			byte imgdata[] = bytestream.toByteArray();
 			bytestream.close();
 			return imgdata;
-		}catch(Exception e){
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 		return null;
 	}
-	
+
 	public static byte[] readFromFile(String fileName, int offset, int len) {
 		if (fileName == null) {
 			return null;
@@ -376,15 +380,15 @@ public class BitmapUtil {
 
 		Log.d(TAG, "readFromFile : offset = " + offset + " len = " + len + " offset + len = " + (offset + len));
 
-		if(offset <0){
+		if (offset < 0) {
 			Log.e(TAG, "readFromFile invalid offset:" + offset);
 			return null;
 		}
-		if(len <=0 ){
+		if (len <= 0) {
 			Log.e(TAG, "readFromFile invalid len:" + len);
 			return null;
 		}
-		if(offset + len > (int) file.length()){
+		if (offset + len > (int) file.length()) {
 			Log.e(TAG, "readFromFile invalid file len:" + file.length());
 			return null;
 		}
@@ -403,8 +407,9 @@ public class BitmapUtil {
 		}
 		return b;
 	}
-	
+
 	private static final int MAX_DECODE_PICTURE_SIZE = 1920 * 1440;
+
 	public static Bitmap extractThumbNail(final String path, final int height, final int width, final boolean crop) {
 		Assert.assertTrue(path != null && !path.equals("") && height > 0 && width > 0);
 
@@ -483,7 +488,7 @@ public class BitmapUtil {
 
 		return null;
 	}
-	
+
 	/** 水平方向模糊度 */
 	private static float hRadius = 10;
 	/** 竖直方向模糊度 */
@@ -492,7 +497,8 @@ public class BitmapUtil {
 	private static int iterations = 7;
 
 	/**
-	 * 高斯模糊
+	 * 高斯模糊{@link #blur(int[] in, int[] out, int width, int height, float radius)}
+	 * {@link #blurFractional(int[], int[], int, int, float)}
 	 */
 	public static Drawable boxBlurFilter(Bitmap bmp) {
 		int width = bmp.getWidth();
@@ -604,5 +610,5 @@ public class BitmapUtil {
 	public static int clamp(int x, int a, int b) {
 		return (x < a) ? a : (x > b) ? b : x;
 	}
-	
+
 }
