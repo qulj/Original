@@ -7,6 +7,7 @@ import com.android.volley.NoConnectionError;
 import com.android.volley.Response;
 import com.android.volley.Response.Listener;
 import com.android.volley.VolleyError;
+import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.StringRequest;
 import com.qlj.toolbox.R;
 import com.qlj.toolbox.ToolBoxApplication;
@@ -89,7 +90,6 @@ public class VolleyApiActivity extends Activity {
 				handler.sendMessage(msg);
 			}
 		});
-
 		ToolBoxApplication.getRequestQueue().add(mofingStringRequest);
 	}
 
