@@ -4,14 +4,14 @@ import org.json.JSONObject;
 
 import com.qlj.toolbox.R;
 import com.qlj.toolbox.ToolBoxApplication;
-import com.qlj.toolbox.api.BaseApi;
-import com.qlj.toolbox.api.ImplApi;
 import com.qlj.toolbox.bean.User;
+import com.qlj.toolbox.request.BaseRequest;
+import com.qlj.toolbox.request.ImplRequest;
 import com.qlj.toolbox.util.AppConstants;
 import com.qlj.toolbox.util.CommonUtil;
 import com.qlj.toolbox.util.MD5;
 import com.qlj.toolbox.util.MJSONObject;
-import com.qlj.toolbox.view.LoadingDialog;
+import com.qlj.toolbox.widget.LoadingDialog;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -97,11 +97,11 @@ public class LoginActivity extends Activity implements OnClickListener {
 				@Override
 				public void run() {
 					try {
-						JSONObject jsonObj = ImplApi.enterpriseLogin(username, MD5.MD5Encode(password));
+						JSONObject jsonObj = ImplRequest.enterpriseLogin(username, MD5.MD5Encode(password));
 						MJSONObject json = new MJSONObject(jsonObj);// CommonUtil.login());
 						if (json != null) {
 							int status = json.getInt("status");
-							if (status == BaseApi.SUCESS) {
+							if (status == BaseRequest.SUCESS) {
 								user.setUserID(json.getString("userID"));
 								user.setEnterpriseID(json.getString("enterpriseID"));
 								user.setName(json.getString("name"));

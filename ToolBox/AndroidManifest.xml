@@ -35,11 +35,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.qlj.toolbox.activity.BaseApiActivity" >
+        <activity android:name="com.qlj.toolbox.activity.GeneralRequestActivity" >
         </activity>
-        <activity android:name="com.qlj.toolbox.activity.CallbackApiActivity" >
+        <activity android:name="com.qlj.toolbox.activity.CallbackRequestActivity" >
         </activity>
-        <activity android:name="com.qlj.toolbox.activity.VolleyApiActivity" >
+        <activity android:name="com.qlj.toolbox.activity.VolleyRequestActivity" >
         </activity>
     </application>
 

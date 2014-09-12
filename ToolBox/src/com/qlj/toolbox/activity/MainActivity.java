@@ -73,13 +73,13 @@ public class MainActivity extends Activity implements OnClickListener {
 			showImg();
 			break;
 		case R.id.btn_base_api:
-			startActivity(new Intent(this, BaseApiActivity.class));
+			startActivity(new Intent(this, GeneralRequestActivity.class));
 			break;
 		case R.id.btn_callback_api:
-			startActivity(new Intent(this, CallbackApiActivity.class));
+			startActivity(new Intent(this, CallbackRequestActivity.class));
 			break;
 		case R.id.btn_volley_api:
-			startActivity(new Intent(this, VolleyApiActivity.class));
+			startActivity(new Intent(this, VolleyRequestActivity.class));
 			break;
 		default:
 			break;
