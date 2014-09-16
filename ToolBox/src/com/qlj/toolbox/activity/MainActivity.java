@@ -1,6 +1,5 @@
 package com.qlj.toolbox.activity;
 
-
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.ImageLoader;
@@ -30,6 +29,7 @@ public class MainActivity extends Activity implements OnClickListener {
 
 		findViewById(R.id.btn_str_req).setOnClickListener(this);
 		findViewById(R.id.btn_show_img).setOnClickListener(this);
+		findViewById(R.id.btn_paging).setOnClickListener(this);
 
 		findViewById(R.id.btn_base_api).setOnClickListener(this);
 		findViewById(R.id.btn_callback_api).setOnClickListener(this);
@@ -80,6 +80,9 @@ public class MainActivity extends Activity implements OnClickListener {
 			break;
 		case R.id.btn_volley_api:
 			startActivity(new Intent(this, VolleyRequestActivity.class));
+			break;
+		case R.id.btn_paging:
+			startActivity(new Intent(this, PagingRequestActivity.class));
 			break;
 		default:
 			break;

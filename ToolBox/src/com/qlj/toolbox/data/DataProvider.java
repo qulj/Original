@@ -17,7 +17,7 @@ import android.text.TextUtils;
  */
 public class DataProvider extends ContentProvider {
 	
-	public static final String AUTHORITY = "com.janu.lifecircle.db.DataProvider";
+	public static final String AUTHORITY = "com.qlj.toolbox.db.DataProvider";
 	public static final String PARAMETER_NOTIFY = "notify";
 	public static final Uri CHAT_URI = Uri.parse("content://" + AUTHORITY + "/t_chat?" + PARAMETER_NOTIFY + "=true");// 聊一聊
 	public static final Uri CHAT_CONTENT_URI = Uri.parse("content://" + AUTHORITY + "/t_chat_content?" + PARAMETER_NOTIFY + "=true");// 聊一聊

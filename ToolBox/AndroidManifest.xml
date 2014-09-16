@@ -41,6 +41,8 @@
         </activity>
         <activity android:name="com.qlj.toolbox.activity.VolleyRequestActivity" >
         </activity>
+        <activity android:name="com.qlj.toolbox.activity.PagingRequestActivity" >
+        </activity>
     </application>
 
 </manifest>
